@@ -8,16 +8,12 @@ const firebaseConfig = {
   projectId: "practicas-comunitario",
   storageBucket: "practicas-comunitario.firebasestorage.app",
   messagingSenderId: "874017448238",
-  appId: "1:874017448238:web:03928054e98441838d1abf",
-  measurementId: "G-XF0GC0DZY4"
+  appId: "1:874017448238:web:03928054e98441838d1abf"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-
-// Analytics es opcional - se inicializa solo si es necesario y está disponible
-// No es esencial para el funcionamiento del login
 
 // Ejemplo básico de login con Google:
 const provider = new GoogleAuthProvider();
