@@ -60,10 +60,10 @@
       "Donar alimentos a un banco de alimentos local",
       "Participar en actividades de limpieza en el vecindario",
       "Ofrecer tutorías gratuitas a estudiantes de bajos recursos.",
-      "Ignorar las necesidades de la comunidad para enfocarse en beneficios personales."
+      "Ignorar las necesidades de la comunidad"
     ],
     "respuesta": 3,
-    "explicacion": "Ignorar las necesidades comunitarias para buscar beneficios personales contradice el concepto de responsabilidad social en el servicio comunitario."
+    "explicacion": "Ignorar las necesidades comunitarias contradice el concepto de responsabilidad social en el servicio comunitario."
   },
   {
     "pregunta": "¿Cuál es una razón para incluir disposiciones sobre igualdad de oportunidades en el reglamento de prácticas preprofesionales?",
@@ -82,7 +82,7 @@
       "Organizar competencias de videojuegos",
       "Ofrecer tutorías académicas gratuitas",
       "Realizar conciertos musicales",
-      "Diseñar murales artísticos en edificios públicos."
+      "Diseñar murales artísticos en edificios públicos"
     ],
     "respuesta": 1,
     "explicacion": "Ofrecer tutorías académicas gratuitas es una actividad directamente orientada a fomentar la educación en la comunidad."
@@ -104,7 +104,7 @@
       "Evaluación de resultados",
       "Implementación de programas",
       "Evaluación de impacto",
-      "Diagnóstico comunitario."
+      "Diagnóstico comunitario"
     ],
     "respuesta": 1,
     "explicacion": "La implementación de programas es la etapa donde se ejecutan las actividades y programas que fueron planificados anteriormente."
@@ -115,7 +115,7 @@
       "Tener habilidades de comunicación efectivas",
       "Falta de experiencia en una determinada área",
       "Acceso a nuevas oportunidades de desarrollo profesional",
-      "Reconocimiento de la marca en el mercado laboral."
+      "Reconocimiento de la marca en el mercado laboral"
     ],
     "respuesta": 1,
     "explicacion": "La falta de experiencia en un área específica es una debilidad interna que puede limitar el desempeño laboral."
@@ -212,8 +212,8 @@
     "pregunta": "¿Qué tipo de factores son considerados amenazas en el análisis FODA en el campo laboral?",
     "opciones": [
       "Capacitación continua ofrecida por la empresa",
-      "Competencia agresiva en el mercado.",
-      "Altos niveles de satisfacción del cliente.",
+      "Competencia agresiva en el mercado",
+      "Altos niveles de satisfacción del cliente",
       "Colaboración efectiva entre los equipos de trabajo"
     ],
     "respuesta": 1,
@@ -236,7 +236,7 @@
       "Liderazgo",
       "Comunicación",
       "Competitividad",
-      "Individualismo."
+      "Individualismo"
     ],
     "respuesta": 1,
     "explicacion": "La comunicación es fundamental para trabajar en equipo, permitiendo la coordinación efectiva y el intercambio de ideas."
@@ -247,7 +247,7 @@
       "Evaluación de impacto",
       "Implementación de programas",
       "Diagnóstico comunitario",
-      "Evaluación de resultados."
+      "Evaluación de resultados"
     ],
     "respuesta": 2,
     "explicacion": "El diagnóstico comunitario es la etapa inicial donde se identifican necesidades, recursos disponibles y potencialidades de la comunidad."
@@ -300,9 +300,9 @@
     "pregunta": "¿Qué tipo de actividades contribuyen al desarrollo sostenible de la comunidad?",
     "opciones": [
       "Usar productos desechables en lugar de reutilizables",
-      "Plantar árboles y crear jardines comunitarios.",
+      "Plantar árboles y crear jardines comunitarios",
       "Promover el consumo excesivo de recursos naturales",
-      "Ignorar los problemas ambientales locales."
+      "Ignorar los problemas ambientales locales"
     ],
     "respuesta": 1,
     "explicacion": "Plantar árboles y crear jardines comunitarios son actividades que promueven el desarrollo sostenible al mejorar el medio ambiente local."
@@ -310,9 +310,9 @@
   {
     "pregunta": "¿Qué representa la sigla 'FODA' en el contexto del análisis laboral?",
     "opciones": [
-      "Fortalezas, Obligaciones, Desafíos, Amenazas.",
-      "Funciones, Objetivos, Decisiones, Acciones.",
-      "Factores, Oportunidades, Desventajas, Avances.",
+      "Fortalezas, Obligaciones, Desafíos, Amenazas",
+      "Funciones, Objetivos, Decisiones, Acciones",
+      "Factores, Oportunidades, Desventajas, Avances",
       "Fortalezas, Oportunidades, Debilidades, Amenazas"
     ],
     "respuesta": 3,
@@ -335,7 +335,7 @@
       "Empatía",
       "Competitividad",
       "Individualismo",
-      "Apatía."
+      "Apatía"
     ],
     "respuesta": 0,
     "explicacion": "La empatía es crucial para comprender las necesidades reales de la comunidad y abordarlas de manera efectiva."
@@ -355,7 +355,7 @@
     "pregunta": "¿Cuál de los siguientes ejemplos representa una fortaleza en el análisis FODA en el campo laboral?",
     "opciones": [
       "Falta de diversidad en el equipo de trabajo",
-      "Localización inadecuada de la oficina.",
+      "Localización inadecuada de la oficina",
       "Alta reputación de la empresa en el sector",
       "Falta de acceso a recursos financieros"
     ],
@@ -434,7 +434,7 @@
       "Establecer metas y objetivos claros para el proyecto",
       "Evaluar el impacto de las acciones implementadas",
       "Identificar las necesidades y recursos de la comunidad",
-      "Realizar estudios y análisis para diagnosticar la situación comunitaria."
+      "Realizar estudios y análisis para diagnosticar la situación comunitaria"
     ],
     "respuesta": 0,
     "explicacion": "La planificación tiene como propósito principal establecer metas y objetivos claros que guíen la ejecución del proyecto comunitario."
@@ -520,9 +520,9 @@
     "pregunta": "¿Qué tipo de factores incluirías en la sección 'Oportunidades' del análisis FODA en el campo laboral?",
     "opciones": [
       "Tecnología obsoleta",
-      "Cambios en la regulación laboral.",
-      "Aumento de la demanda del producto o servicio ofrecido por la empresa.",
-      "Escasez de talento en la industria."
+      "Cambios en la regulación laboral",
+      "Aumento de la demanda del producto o servicio ofrecido por la empresa",
+      "Escasez de talento en la industria"
     ],
     "respuesta": 2,
     "explicacion": "El aumento de la demanda de productos o servicios representa una oportunidad externa positiva para la empresa."
