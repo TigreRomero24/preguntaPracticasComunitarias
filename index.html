@@ -87,21 +87,57 @@
     <footer>&copy; 2025 Practicas Comunitario</footer>
   </div>
 
-  <!-- Polyfill para importmap (para navegadores antiguos) -->
-  <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+  <!-- Firebase SDKs (forma tradicional - más compatible) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   
-  <!-- Import map para Firebase módulos ES6 desde CDN -->
-  <script type="importmap">
-    {
-      "imports": {
-        "firebase/app": "https://esm.sh/firebase@10.7.1/app?bundle",
-        "firebase/auth": "https://esm.sh/firebase@10.7.1/auth?bundle",
-        "firebase/firestore": "https://esm.sh/firebase@10.7.1/firestore?bundle"
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAs_LBouq2njfy0cJHJjuiUfASC3RqVKkM",
+      authDomain: "practicas-comunitario.firebaseapp.com",
+      projectId: "practicas-comunitario",
+      storageBucket: "practicas-comunitario.firebasestorage.app",
+      messagingSenderId: "874017448238",
+      appId: "1:874017448238:web:03928054e98441838d1abf"
+    };
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    // Función para inicializar el botón de login
+    function inicializarLogin() {
+      const loginBtn = document.getElementById("loginBtn");
+      
+      if (!loginBtn) {
+        console.error("Error: No se encontró el botón de login con id 'loginBtn'");
+        return;
       }
+      
+      loginBtn.addEventListener("click", () => {
+        auth.signInWithPopup(provider)
+          .then(result => {
+            console.log("Usuario autenticado:", result.user);
+            alert(`Bienvenido ${result.user.displayName}`);
+            window.location.href = "preguntas.html";
+          })
+          .catch(error => {
+            console.error("Error login:", error);
+            alert(`Error al iniciar sesión: ${error.message}`);
+          });
+      });
+    }
+
+    // Esperar a que el DOM esté listo
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", inicializarLogin);
+    } else {
+      inicializarLogin();
     }
   </script>
-
-  <script type="module" src="main.js"></script>
 
 </body>
 </html>
