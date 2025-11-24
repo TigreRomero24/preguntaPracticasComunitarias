@@ -5,9 +5,9 @@
 // --- Config y estado ---
 
 // Materia Fija y configuración
-const MATERIA_URL = 'preguntas/escalabilidad.json';
+const MATERIA_URL = 'preguntas/practicas.json';
 const CANTIDAD_EXAMEN = 30;
-const MATERIA_NOMBRE = 'escalabilidad';
+const MATERIA_NOMBRE = 'practicas';
 
 const estado = document.getElementById('estado');
 const contenedor = document.getElementById('contenedor');
@@ -34,7 +34,7 @@ function fmt(seg){ const m=Math.floor(seg/60).toString().padStart(2,'0'); const 
 
 async function cargarMateria(){
   const res = await fetch(MATERIA_URL); 
-  if(!res.ok) throw new Error('No pude cargar el banco de preguntas de Escalabilidad');
+  if(!res.ok) throw new Error('No pude cargar el banco de preguntas de Practicas de servicio comunitario');
   const data = await res.json();
   if(!Array.isArray(data)) throw new Error('El JSON de preguntas debe ser un arreglo');
   return data;
@@ -177,7 +177,7 @@ async function finalizar(porTiempo){
 btnEmpezar.onclick = async () => {
   try{
     btnEmpezar.disabled = true;
-    estado.textContent = 'Cargando preguntas de Escalabilidad...';
+    estado.textContent = 'Cargando preguntas de Practicas de servicio comunitario...';
     contenedor.innerHTML = '';
     correctas = 0; respuestas = []; idx = 0;
 
@@ -189,7 +189,7 @@ btnEmpezar.onclick = async () => {
         ronda = shuffle(banco); 
     }
 
-    estado.textContent = `Materia: Escalabilidad de redes — Preguntas seleccionadas: ${ronda.length}`;
+    estado.textContent = `Materia: Practicas de servicio comunitario — Preguntas seleccionadas: ${ronda.length}`;
     mostrarPregunta();
     iniciarTimer();
   }catch(e){
@@ -214,12 +214,12 @@ btnCargar && (btnCargar.onclick = ()=>{
     const d = JSON.parse(raw);
 
     if (d.materia !== MATERIA_NOMBRE) {
-        return alert(`El progreso guardado es de la materia "${d.materia}". Solo se admite "Escalabilidad de redes".`);
+        return alert(`El progreso guardado es de la materia "${d.materia}". Solo se admite "Practicas de servicio comunitario".`);
     }
 
     modoSel.value = d.modo; minutosSel.value = d.minutos;
     ronda = d.ronda; idx = d.idx; correctas = d.correctas; respuestas = d.respuestas || [];
-    estado.textContent = `Progreso cargado. Materia: Escalabilidad de redes — Preguntas: ${ronda.length}`;
+    estado.textContent = `Progreso cargado. Materia: Practicas de servicio comunitario — Preguntas: ${ronda.length}`;
     mostrarPregunta(); iniciarTimer();
   }catch(e){ alert('No pude cargar el progreso. Archivo corrupto.'); }
 });
