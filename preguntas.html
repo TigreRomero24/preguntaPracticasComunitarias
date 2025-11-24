@@ -202,6 +202,77 @@
     </section>
   </main>
 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import { 
+      getAuth, 
+      onAuthStateChanged, 
+      signOut 
+    } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAs_LBouq2njfy0cJHJjuiUfASC3RqVKkM",
+      authDomain: "practicas-comunitario.firebaseapp.com",
+      projectId: "practicas-comunitario",
+      storageBucket: "practicas-comunitario.firebasestorage.app",
+      messagingSenderId: "874017448238",
+      appId: "1:874017448238:web:03928054e98441838d1abf"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const correosPermitidos = [
+      "dpachecog2@unemi.edu.ec", 
+      "cnavarretem4@unemi.edu.ec",
+      "htigrer@unemi.edu.ec",
+      "gorellanas2@unemi.edu.ec",
+      "iastudillol@unemi.edu.ec",
+      "sgavilanezp2@unemi.edu.ec",
+      "jzamoram9@unemi.edu.ec",
+      "fcarrillop@unemi.edu.ec",
+      "naguilarb@unemi.edu.ec",
+      "ehidalgoc4@unemi.edu.ec",
+      "lbrionesg3@unemi.edu.ec",
+      "xsalvadorv@unemi.edu.ec",
+      "nbravop4@unemi.edu.ec",
+      "jmoreirap6@unemi.edu.ec",
+      "kholguinb2@unemi.edu.ec"
+    ];
+
+    // 🔐 Validar el acceso al cargar
+    onAuthStateChanged(auth, (user) => {
+      const logoutBtn = document.getElementById("btnLogout");
+      const userInfo = document.getElementById("userInfo");
+
+      if (!user) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      if (!correosPermitidos.includes(user.email)) {
+        alert("Tu cuenta no está autorizada.");
+        signOut(auth);
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Mostrar nombre y correo del usuario
+      if (userInfo) {
+        userInfo.textContent = `${user.displayName} • ${user.email}`;
+        userInfo.classList.remove("hidden");
+      }
+
+      if (logoutBtn) {
+        logoutBtn.classList.remove("hidden");
+        logoutBtn.addEventListener("click", () => {
+          signOut(auth);
+          window.location.href = "index.html";
+        });
+      }
+    });
+  </script>
+
   <script src="app.js?v=11"></script>
 </body>
 </html>
