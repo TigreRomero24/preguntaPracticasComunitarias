@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAs_LBouq2njfy0cJHJjuiUfASC3RqVKkM",
@@ -14,10 +13,11 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+// Analytics es opcional - se inicializa solo si es necesario y está disponible
+// No es esencial para el funcionamiento del login
 
 // Ejemplo básico de login con Google:
 const provider = new GoogleAuthProvider();
