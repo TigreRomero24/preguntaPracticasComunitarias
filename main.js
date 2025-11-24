@@ -22,14 +22,33 @@ const db = getFirestore(app);
 // Ejemplo básico de login con Google:
 const provider = new GoogleAuthProvider();
 
-document.getElementById("loginBtn").addEventListener("click", () => {
-  signInWithPopup(auth, provider)
-    .then(result => {
-      console.log("Usuario autenticado:", result.user);
-      alert(`Bienvenido ${result.user.displayName}`);
-      window.location.href = "preguntas.html";
-    })
-    .catch(error => {
-      console.error("Error login:", error);
-    });
-});
+// Función para inicializar el botón de login
+function inicializarLogin() {
+  const loginBtn = document.getElementById("loginBtn");
+  
+  if (!loginBtn) {
+    console.error("Error: No se encontró el botón de login con id 'loginBtn'");
+    return;
+  }
+  
+  loginBtn.addEventListener("click", () => {
+    signInWithPopup(auth, provider)
+      .then(result => {
+        console.log("Usuario autenticado:", result.user);
+        alert(`Bienvenido ${result.user.displayName}`);
+        window.location.href = "preguntas.html";
+      })
+      .catch(error => {
+        console.error("Error login:", error);
+        alert(`Error al iniciar sesión: ${error.message}`);
+      });
+  });
+}
+
+// Verificar si el DOM ya está cargado o esperar a que se cargue
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", inicializarLogin);
+} else {
+  // El DOM ya está cargado
+  inicializarLogin();
+}
