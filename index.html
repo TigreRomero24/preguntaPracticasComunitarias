@@ -1,14 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login con Google - Firebase</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - Practicas Comunitario</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset y estilos generales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #6C63FF, #3F3D56);
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px 60px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    #loginBtn {
+      background: #fff;
+      color: #3F3D56;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    #loginBtn:hover {
+      background: #3F3D56;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h2>Iniciar sesión con Google</h2>
-  <button id="loginBtn">Login con Google</button>
 
-  <script type="module" src="firebase-init.js"></script>
+  <div class="container">
+    <h1>Bienvenido</h1>
+    <p>Inicia sesión con Google para continuar</p>
+    <button id="loginBtn">Iniciar sesión con Google</button>
+    <footer>&copy; 2025 Practicas Comunitario</footer>
+  </div>
+
+  <script type="module" src="main.js"></script>
+
 </body>
 </html>
