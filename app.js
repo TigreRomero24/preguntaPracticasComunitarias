@@ -58,33 +58,33 @@ function mostrarPregunta(){
   const q = ronda[idx];
 
   contenedor.innerHTML = `
-    <div class="bg-white/80 backdrop-blur shadow-xl rounded-2xl border border-gray-100 p-5">
-      <div class="flex items-center gap-2 mb-2">
-        <span class="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-700 border">Pregunta ${idx+1} / ${ronda.length}</span>
+    <div class="card p-6 animate-fade-in">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="pill text-sm font-semibold">📋 Pregunta ${idx+1} / ${ronda.length}</span>
       </div>
 
-      <h2 class="text-lg font-semibold mb-3">${q.pregunta}</h2>
+      <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-slate-100">${q.pregunta}</h2>
       ${q.imagen ? `
-  <div class="flex justify-center my-4">
+  <div class="flex justify-center my-6">
     <img src="${q.imagen}" alt="Imagen de la pregunta"
-          class="max-w-full md:max-w-2xl rounded-xl border shadow-md">
+          class="img-pregunta">
   </div>
 ` : ''}
 
-      <div id="opciones" class="space-y-2"></div>
+      <div id="opciones" class="space-y-3 mb-4"></div>
 
-      <div id="feedback" class="mt-4 text-sm"></div>
+      <div id="feedback" class="mt-4 mb-4"></div>
 
-      <div class="mt-5 flex gap-2">
-        <button id="btnPrev" class="px-4 py-2 rounded-xl border bg-white hover:bg-gray-50 transition"
-                ${idx===0 ? "disabled" : ""}>Anterior</button>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button id="btnPrev" class="btn btn-ghost"
+                ${idx===0 ? "disabled" : ""}>⬅️ Anterior</button>
 
-        <button id="btnNext" class="px-4 py-2 rounded-xl border bg-white hover:bg-gray-50 transition">
-          Siguiente
+        <button id="btnNext" class="btn btn-ghost">
+          Siguiente ➡️
         </button>
 
-        <button id="btnFin" class="ml-auto px-4 py-2 rounded-xl border bg-indigo-600 text-white hover:bg-indigo-700 transition">
-          Finalizar
+        <button id="btnFin" class="btn btn-primary ml-auto">
+          ✅ Finalizar
         </button>
       </div>
     </div>
@@ -93,9 +93,9 @@ function mostrarPregunta(){
   const wrap = document.getElementById('opciones');
   wrap.innerHTML = q.opciones.map((op,i)=>`
     <button
-      class="opt w-full text-left px-4 py-3 rounded-xl border bg-white hover:bg-indigo-50 transition"
+      class="opt"
       data-i="${i}">
-      ${op}
+      ${String.fromCharCode(65 + i)}. ${op}
     </button>
   `).join('');
 
@@ -106,56 +106,59 @@ function mostrarPregunta(){
   document.getElementById('btnNext').onclick = () => { if (idx<ronda.length-1) { idx++; mostrarPregunta(); } else { finalizar(false); } };
   document.getElementById('btnFin').onclick  = () => finalizar(false);
 
+  // Si ya había respuesta, mostrar feedback y deshabilitar opciones
   if (respuestas[idx] != null){
-    deshabilitarOpciones(q.respuesta, respuestas[idx], modoSel.value==='examen');
-    if (modoSel.value==='estudio'){
-      mostrarFeedback(respuestas[idx]===q.respuesta, q);
-    }
+    const ok = respuestas[idx] === q.respuesta;
+    mostrarFeedback(ok, q);
+    deshabilitarOpciones(q.respuesta, respuestas[idx], false);
   }
 }
 
 function responder(iElegido){
   const q = ronda[idx];
 
-  if (modoSel.value === 'estudio' && respuestas[idx] !== undefined) {
-    if (respuestas[idx] === q.respuesta) correctas--;
+  // Si ya había una respuesta previa, ajustar el conteo
+  if (respuestas[idx] !== undefined && respuestas[idx] === q.respuesta) {
+    correctas--;
   }
+
   respuestas[idx] = iElegido;
 
-  if (modoSel.value === 'estudio'){
-    const ok = iElegido === q.respuesta;
-    if (ok) correctas++;
-    mostrarFeedback(ok, q);
-    deshabilitarOpciones(q.respuesta, iElegido, false);
-  } else {
-    deshabilitarOpciones(null, iElegido, true);
-  }
+  // SIEMPRE mostrar feedback inmediatamente (tanto en examen como estudio)
+  const ok = iElegido === q.respuesta;
+  if (ok) correctas++;
+  
+  // Mostrar feedback inmediatamente
+  mostrarFeedback(ok, q);
+  
+  // Deshabilitar opciones y mostrar la respuesta correcta
+  deshabilitarOpciones(q.respuesta, iElegido, false);
 }
 
 function mostrarFeedback(ok, q){
   const box = document.getElementById('feedback');
   const correcta = q.opciones[q.respuesta];
   const exp = q.explicacion ? ` ${q.explicacion}` : '';
-
+  
   if(ok){
-    box.className = 'mt-3 text-sm rounded border bg-green-50 border-green-200 text-green-800 px-3 py-2';
-    box.textContent = '✅ ¡Correcto!' + exp;
+    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-green-50 to-emerald-50 border-green-300 text-green-800 dark:from-green-900/30 dark:to-emerald-900/30 dark:border-green-600 dark:text-green-300 font-medium shadow-md';
+    box.innerHTML = '<div class="flex items-center gap-2"><span class="text-2xl">✅</span><span><strong>¡Correcto!</strong>' + exp + '</span></div>';
   }else{
-    box.className = 'mt-3 text-sm rounded border bg-red-50 border-red-200 text-red-800 px-3 py-2';
-    box.textContent = `❌ Incorrecto. Respuesta correcta: "${correcta}".` + exp;
+    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-red-50 to-rose-50 border-red-300 text-red-800 dark:from-red-900/30 dark:to-rose-900/30 dark:border-red-600 dark:text-red-300 font-medium shadow-md';
+    box.innerHTML = `<div class="flex items-start gap-2"><span class="text-2xl">❌</span><span><strong>Incorrecto.</strong> Respuesta correcta: <strong>"${correcta}"</strong>.` + exp + '</span></div>';
   }
 }
 
 function deshabilitarOpciones(indiceCorrecta, indiceElegida, soloMarcar){
   document.querySelectorAll('#opciones .opt').forEach((b,i)=>{
     b.disabled = true;
-    b.classList.add('disabled:opacity-80');
-
+    
+    // Marca visual: correcta en verde, elegida con aro indigo
     if (!soloMarcar && indiceCorrecta!=null && i===indiceCorrecta) {
-      b.classList.add('ring-2','ring-green-300');
+      b.classList.add('ring-ok');
     }
     if (i===indiceElegida) {
-      b.classList.add('ring-2','ring-indigo-300');
+      b.classList.add('ring-sel');
     }
   });
 }
