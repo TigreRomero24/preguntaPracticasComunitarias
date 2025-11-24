@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { 
+  getAuth, 
+  GoogleAuthProvider, 
+  signInWithPopup,
+  onAuthStateChanged
+} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -15,7 +20,26 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Ejemplo básico de login con Google:
+// 📌 Lista de correos permitidos
+const correosPermitidos = [
+  "dpachecog2@unemi.edu.ec", 
+  "cnavarretem4@unemi.edu.ec",
+  "htigrer@unemi.edu.ec",
+  "gorellanas2@unemi.edu.ec",
+  "iastudillol@unemi.edu.ec",
+  "sgavilanezp2@unemi.edu.ec",
+  "jzamoram9@unemi.edu.ec",
+  "fcarrillop@unemi.edu.ec",
+  "naguilarb@unemi.edu.ec",
+  "ehidalgoc4@unemi.edu.ec",
+  "lbrionesg3@unemi.edu.ec",
+  "xsalvadorv@unemi.edu.ec",
+  "nbravop4@unemi.edu.ec",
+  "jmoreirap6@unemi.edu.ec",
+  "kholguinb2@unemi.edu.ec"
+];
+
+// Proveedor de Google
 const provider = new GoogleAuthProvider();
 
 // Función para inicializar el botón de login
@@ -41,10 +65,20 @@ function inicializarLogin() {
   });
 }
 
+// 🔐 Validar si el usuario logueado está permitido
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    if (!correosPermitidos.includes(user.email)) {
+      alert("Tu cuenta no está autorizada.");
+      auth.signOut();
+      window.location.href = "index.html";
+    }
+  }
+});
+
 // Verificar si el DOM ya está cargado o esperar a que se cargue
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", inicializarLogin);
 } else {
-  // El DOM ya está cargado
   inicializarLogin();
 }

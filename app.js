@@ -145,13 +145,16 @@ function mostrarFeedback(ok, q){
   const exp = q.explicacion ? ` ${q.explicacion}` : '';
   
   if(ok){
-    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-green-50 to-emerald-50 border-green-300 text-green-800 dark:from-green-900/30 dark:to-emerald-900/30 dark:border-green-600 dark:text-green-300 font-medium shadow-md';
-    box.innerHTML = '<div class="flex items-center gap-2"><span class="text-2xl">✅</span><span><strong>¡Correcto!</strong>' + exp + '</span></div>';
+    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-green-100 to-emerald-100 border-green-300 text-green-800 dark:bg-green-900/40 dark:border-green-400 dark:text-green-200 font-medium shadow-md';
+    box.innerHTML = `<div class="flex items-center gap-2"><span class="text-2xl">✅</span><span><strong>¡Correcto!</strong> ${exp}</span></div>`;
   }else{
-    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-red-50 to-rose-50 border-red-300 text-red-800 dark:from-red-900/30 dark:to-rose-900/30 dark:border-red-600 dark:text-red-300 font-medium shadow-md';
-    box.innerHTML = `<div class="flex items-start gap-2"><span class="text-2xl">❌</span><span><strong>Incorrecto.</strong> Respuesta correcta: <strong>"${correcta}"</strong>.` + exp + '</span></div>';
+    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-red-100 to-rose-100 border-red-300 text-red-800 dark:bg-red-900/40 dark:border-red-400 dark:text-red-200 font-medium shadow-md';
+    box.innerHTML = `<div class="flex items-start gap-2"><span class="text-2xl">❌</span><span><strong>Incorrecto.</strong> Respuesta correcta: <strong>"${correcta}"</strong>. ${exp}</span></div>`;
   }
 }
+
+
+
 
 function deshabilitarOpciones(indiceCorrecta, indiceElegida, soloMarcar){
   document.querySelectorAll('#opciones button').forEach((b,i)=>{
