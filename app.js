@@ -64,7 +64,7 @@ function mostrarPregunta(){
         <div class="flex items-center gap-2 mb-3">
           <span class="pill text-sm font-semibold">📋 Pregunta ${idx+1} / ${ronda.length}</span>
         </div>
-        <h2 class="text-xl font-bold text-gray-800 dark:text-slate-900">${q.pregunta}</h2>
+        <h2 class="text-xl font-bold text-gray-800">${q.pregunta}</h2>
         ${q.imagen ? `
         <div class="flex justify-center mt-4">
           <img src="${q.imagen}" alt="Imagen de la pregunta"

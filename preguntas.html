@@ -9,7 +9,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { 
-      darkMode: 'class',
       theme: {
         extend: {
           animation: {
@@ -60,22 +59,17 @@
     .btn-ghost { 
       @apply bg-white/90 border border-gray-200 text-gray-700;
       @apply hover:bg-white hover:border-gray-300 hover:text-gray-900;
-      @apply dark:bg-slate-800/90 dark:border-slate-700 dark:text-slate-200;
-      @apply dark:hover:bg-slate-700 dark:hover:border-slate-600;
     }
 
     .pill { 
       @apply text-xs px-4 py-2 rounded-full font-semibold;
       @apply bg-gradient-to-r from-blue-100 to-indigo-100 text-indigo-700 border border-indigo-200;
-      @apply dark:from-blue-900/30 dark:to-indigo-900/30 dark:text-indigo-300 dark:border-indigo-700;
     }
 
     .opt { 
       @apply w-full text-left px-5 py-4 rounded-xl border-2 bg-white transition-all duration-200;
       @apply hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:border-indigo-300;
       @apply hover:shadow-md hover:scale-[1.02] active:scale-[0.98];
-      @apply dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200;
-      @apply dark:hover:from-indigo-900/30 dark:hover:to-purple-900/30 dark:hover:border-indigo-600;
     }
 
     .opt[disabled] { 
@@ -86,7 +80,7 @@
     #opciones button {
       @apply w-full bg-white rounded-xl shadow-md p-4 text-left border-2 border-gray-200;
       @apply hover:border-indigo-400 hover:shadow-lg transition-all duration-200;
-      @apply text-gray-800 dark:text-slate-900 font-medium;
+      @apply text-gray-800 font-medium;
     }
 
     #opciones button:hover:not([disabled]) {
@@ -99,20 +93,16 @@
 
     .ring-ok { 
       @apply ring-4 ring-green-400 border-green-500 bg-green-50;
-      @apply dark:ring-green-600 dark:border-green-700 dark:bg-green-900/20;
     }
 
     .ring-sel { 
       @apply ring-4 ring-indigo-400 border-indigo-500;
-      @apply dark:ring-indigo-600 dark:border-indigo-700;
     }
 
     select {
       @apply bg-white border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm font-medium;
       @apply focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500;
       @apply transition-all duration-200 hover:border-gray-300;
-      @apply dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200;
-      @apply dark:focus:ring-indigo-600 dark:focus:border-indigo-600;
     }
 
     /* Header mejorado */
@@ -122,20 +112,6 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
-    /* Dark mode mejorado */
-    .dark body {
-      background: #dfdfdf;
-    }
-
-    .dark .card { 
-      @apply bg-slate-900/95 border-slate-700/50;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
-    }
-
-    .dark header {
-      background: rgba(15, 23, 42, 0.95);
-      border-color: rgba(51, 65, 85, 0.5);
-    }
 
     /* Animaciones suaves */
     #contenedor > * {
@@ -145,7 +121,6 @@
     /* Estado mejorado */
     #estado {
       @apply bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200;
-      @apply dark:from-blue-900/20 dark:to-indigo-900/20 dark:border-blue-800;
     }
 
     /* Scrollbar personalizado */
@@ -154,7 +129,7 @@
     }
 
     ::-webkit-scrollbar-track {
-      @apply bg-gray-100 dark:bg-slate-800;
+      @apply bg-gray-100;
     }
 
     ::-webkit-scrollbar-thumb {
@@ -175,9 +150,8 @@
       </h1>
       <span class="text-sm text-gray-500 hidden md:inline">Prácticas de Servicio Comunitario</span>
       <div class="ml-auto flex items-center gap-3">
-        <span id="userInfo" class="hidden sm:inline text-sm font-medium text-gray-600 dark:text-slate-300"></span>
+        <span id="userInfo" class="hidden sm:inline text-sm font-medium text-gray-600"></span>
         <button id="btnLogout" class="btn btn-ghost text-sm hidden">🚪 Salir</button>
-        <button id="toggleDark" class="btn btn-ghost text-lg p-2" title="Modo oscuro">🌙</button>
       </div>
     </div>
   </header>
@@ -220,7 +194,7 @@
         </button>
       </div>
 
-      <div id="estado" class="p-4 rounded-xl text-sm font-medium text-gray-700 dark:text-slate-300">
+      <div id="estado" class="p-4 rounded-xl text-sm font-medium text-gray-700">
         Selecciona el modo de estudio/examen y presiona <strong>Empezar</strong> para comenzar.
       </div>
       
@@ -229,22 +203,5 @@
   </main>
 
   <script src="app.js?v=11"></script>
-
-  <script>
-    // Toggle dark mode mejorado
-    const toggleDark = document.getElementById('toggleDark');
-    toggleDark?.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.toggle('dark');
-      toggleDark.textContent = isDark ? '☀️' : '🌙';
-      toggleDark.title = isDark ? 'Modo claro' : 'Modo oscuro';
-    });
-
-    // Verificar preferencia del sistema
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark');
-      toggleDark.textContent = '☀️';
-      toggleDark.title = 'Modo claro';
-    }
-  </script>
 </body>
 </html>
