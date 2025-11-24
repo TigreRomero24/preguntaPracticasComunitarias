@@ -52,15 +52,17 @@ function inicializarLogin() {
   }
   
   loginBtn.addEventListener("click", () => {
+    loginBtn.disabled = true;
+
     signInWithPopup(auth, provider)
       .then(result => {
         console.log("Usuario autenticado:", result.user);
         alert(`Bienvenido ${result.user.displayName}`);
-        window.location.href = "preguntas.html";
       })
       .catch(error => {
         console.error("Error login:", error);
         alert(`Error al iniciar sesión: ${error.message}`);
+        loginBtn.disabled = false;
       });
   });
 }
@@ -72,7 +74,11 @@ onAuthStateChanged(auth, (user) => {
       alert("Tu cuenta no está autorizada.");
       auth.signOut();
       window.location.href = "index.html";
+      return;
     }
+
+    // ✔️ Si el correo es válido, ahora sí redirigir
+    window.location.href = "preguntas.html";
   }
 });
 
