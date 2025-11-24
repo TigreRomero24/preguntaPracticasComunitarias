@@ -90,6 +90,21 @@
       @apply opacity-75 cursor-not-allowed hover:scale-100;
     }
 
+    /* Estilos para las cajas de opciones */
+    #opciones button {
+      @apply w-full bg-white rounded-xl shadow-md p-4 text-left border-2 border-gray-200;
+      @apply hover:border-indigo-400 hover:shadow-lg transition-all duration-200;
+      @apply text-gray-800 dark:text-slate-900 font-medium;
+    }
+
+    #opciones button:hover:not([disabled]) {
+      @apply transform scale-[1.02];
+    }
+
+    #opciones button[disabled] {
+      @apply cursor-not-allowed opacity-90;
+    }
+
     .ring-ok { 
       @apply ring-4 ring-green-400 border-green-500 bg-green-50;
       @apply dark:ring-green-600 dark:border-green-700 dark:bg-green-900/20;

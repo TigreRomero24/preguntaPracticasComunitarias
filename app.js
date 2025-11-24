@@ -58,31 +58,34 @@ function mostrarPregunta(){
   const q = ronda[idx];
 
   contenedor.innerHTML = `
-    <div class="card p-6 animate-fade-in">
-      <div class="flex items-center gap-2 mb-4">
-        <span class="pill text-sm font-semibold">📋 Pregunta ${idx+1} / ${ronda.length}</span>
+    <div class="space-y-4 animate-fade-in">
+      <!-- Caja de la pregunta -->
+      <div class="bg-white rounded-xl shadow-lg p-6 border-2 border-gray-200">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="pill text-sm font-semibold">📋 Pregunta ${idx+1} / ${ronda.length}</span>
+        </div>
+        <h2 class="text-xl font-bold text-gray-800 dark:text-slate-900">${q.pregunta}</h2>
+        ${q.imagen ? `
+        <div class="flex justify-center mt-4">
+          <img src="${q.imagen}" alt="Imagen de la pregunta"
+                class="img-pregunta">
+        </div>
+        ` : ''}
       </div>
 
-      <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-slate-100">${q.pregunta}</h2>
-      ${q.imagen ? `
-  <div class="flex justify-center my-6">
-    <img src="${q.imagen}" alt="Imagen de la pregunta"
-          class="img-pregunta">
-  </div>
-` : ''}
+      <!-- Opciones - cada una en su propia caja -->
+      <div id="opciones" class="space-y-3"></div>
 
-      <div id="opciones" class="space-y-3 mb-4"></div>
+      <!-- Feedback -->
+      <div id="feedback" class="mt-4"></div>
 
-      <div id="feedback" class="mt-4 mb-4"></div>
-
-      <div class="mt-6 flex flex-wrap gap-3">
+      <!-- Botones de navegación -->
+      <div class="bg-white rounded-xl shadow-lg p-4 border-2 border-gray-200 flex flex-wrap gap-3">
         <button id="btnPrev" class="btn btn-ghost"
                 ${idx===0 ? "disabled" : ""}>⬅️ Anterior</button>
-
         <button id="btnNext" class="btn btn-ghost">
           Siguiente ➡️
         </button>
-
         <button id="btnFin" class="btn btn-primary ml-auto">
           ✅ Finalizar
         </button>
@@ -93,13 +96,14 @@ function mostrarPregunta(){
   const wrap = document.getElementById('opciones');
   wrap.innerHTML = q.opciones.map((op,i)=>`
     <button
-      class="opt"
+      class="w-full bg-white rounded-xl shadow-md p-4 text-left border-2 border-gray-200 hover:border-indigo-400 hover:shadow-lg transition-all duration-200 text-gray-800 dark:text-slate-900 font-medium"
       data-i="${i}">
-      ${String.fromCharCode(65 + i)}. ${op}
+      <span class="font-bold text-indigo-600 mr-2">${String.fromCharCode(65 + i)}.</span>
+      ${op}
     </button>
   `).join('');
 
-  wrap.querySelectorAll('.opt').forEach(btn=>{
+  wrap.querySelectorAll('button').forEach(btn=>{
     btn.addEventListener('click', () => responder(parseInt(btn.dataset.i,10)));
   });
   document.getElementById('btnPrev').onclick = () => { if (idx>0) { idx--; mostrarPregunta(); } };
@@ -150,15 +154,22 @@ function mostrarFeedback(ok, q){
 }
 
 function deshabilitarOpciones(indiceCorrecta, indiceElegida, soloMarcar){
-  document.querySelectorAll('#opciones .opt').forEach((b,i)=>{
+  document.querySelectorAll('#opciones button').forEach((b,i)=>{
     b.disabled = true;
+    b.classList.add('cursor-not-allowed', 'opacity-90');
     
     // Marca visual: correcta en verde, elegida con aro indigo
     if (!soloMarcar && indiceCorrecta!=null && i===indiceCorrecta) {
-      b.classList.add('ring-ok');
+      b.classList.remove('border-gray-200', 'bg-white');
+      b.classList.add('border-green-500', 'bg-green-50', 'ring-4', 'ring-green-300');
     }
     if (i===indiceElegida) {
-      b.classList.add('ring-sel');
+      if (i !== indiceCorrecta) {
+        b.classList.remove('border-gray-200', 'bg-white');
+        b.classList.add('border-red-500', 'bg-red-50', 'ring-4', 'ring-red-300');
+      } else {
+        b.classList.add('ring-4', 'ring-green-300');
+      }
     }
   });
 }
