@@ -14,22 +14,22 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Ejemplo básico de login con Google:
 const provider = new GoogleAuthProvider();
 
-const loginBtn = document.getElementById("loginBtn");
-
-loginBtn.addEventListener("click", () => {
+document.getElementById("loginBtn").addEventListener("click", () => {
   signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
-      console.log("Usuario logueado:", user);
-      alert(`Bienvenido ${user.displayName}`);
-      // Aquí rediriges a la página de preguntas o dashboard
+    .then(result => {
+      console.log("Usuario autenticado:", result.user);
+      alert(`Bienvenido ${result.user.displayName}`);
       window.location.href = "preguntas.html";
     })
-    .catch((error) => {
-      console.error("Error en login:", error);
-      alert("Error al iniciar sesión");
+    .catch(error => {
+      console.error("Error login:", error);
     });
 });
