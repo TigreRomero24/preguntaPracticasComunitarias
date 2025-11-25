@@ -157,18 +157,18 @@
   </header>
 
   <main class="max-w-6xl mx-auto p-4 md:p-6 space-y-4">
-    <section id="appPanel" class="card animate-slide-up">
-      <div class="flex flex-wrap gap-3 items-center mb-4">
+    <section id="appPanel" class="card animate-slide-up mt-4 p-4 rounded-xl" style="background-color: #ffffff;">
+      <div class="flex flex-wrap gap-3 items-center mb-4 mt-2">
         <span class="pill text-sm flex items-center gap-2">
           📚 Prácticas de Servicio Comunitario
         </span>
         
-        <select id="modo" class="flex-1 min-w-[200px]">
+        <select id="modo" class="flex-1 min-w-[200px] border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300">
           <option value="examen">📝 Examen (30 Preguntas)</option>
           <option value="estudio">📖 Estudio (Todas las Preguntas)</option>
         </select>
         
-        <select id="minutos" class="flex-1 min-w-[150px]">
+        <select id="minutos" class="flex-1 min-w-[150px] border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300">
           <option value="60">⏰ 60 minutos</option>
           <option value="30">⏰ 30 minutos</option>
           <option value="15">⏰ 15 minutos</option>
@@ -182,14 +182,14 @@
         </div>
       </div>
 
-      <div class="flex flex-wrap gap-3 mb-4">
-        <button id="btnEmpezar" class="btn btn-primary flex-1 min-w-[150px]">
+      <div class="flex flex-wrap gap-3 mb-4 mt-10">
+        <button id="btnEmpezar" class="btn btn-primary flex-1 min-w-[50px] border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300">
           🚀 Empezar
         </button>
-        <button id="btnGuardar" class="btn btn-ghost">
+        <button id="btnGuardar" class="btn btn-ghost border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300">
           💾 Guardar
         </button>
-        <button id="btnCargar" class="btn btn-ghost">
+        <button id="btnCargar" class="btn btn-ghost border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-indigo-300 focus:border-indigo-500 transition-all duration-200 hover:border-gray-300">
           📂 Cargar
         </button>
       </div>
@@ -207,7 +207,7 @@
     import { 
       getAuth, 
       onAuthStateChanged, 
-      signOut 
+      signOut
     } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
     const firebaseConfig = {
@@ -272,7 +272,6 @@
       }
     });
   </script>
-
   <script src="app.js?v=11"></script>
 </body>
 </html>

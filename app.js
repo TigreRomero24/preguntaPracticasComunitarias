@@ -145,10 +145,10 @@ function mostrarFeedback(ok, q){
   const exp = q.explicacion ? ` ${q.explicacion}` : '';
   
   if(ok){
-    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-green-100 to-emerald-100 border-green-300 text-green-800 dark:bg-green-900/40 dark:border-green-400 dark:text-green-200 font-medium shadow-md';
+    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-green-100 to-emerald-100 border-green-300 text-green-800 font-medium shadow-md';
     box.innerHTML = `<div class="flex items-center gap-2"><span class="text-2xl">✅</span><span><strong>¡Correcto!</strong> ${exp}</span></div>`;
   }else{
-    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-red-100 to-rose-100 border-red-300 text-red-800 dark:bg-red-900/40 dark:border-red-400 dark:text-red-200 font-medium shadow-md';
+    box.className = 'p-4 rounded-xl border-2 bg-gradient-to-r from-red-100 to-rose-100 border-red-300 text-red-800 font-medium shadow-md';
     box.innerHTML = `<div class="flex items-start gap-2"><span class="text-2xl">❌</span><span><strong>Incorrecto.</strong> Respuesta correcta: <strong>"${correcta}"</strong>. ${exp}</span></div>`;
   }
 }
